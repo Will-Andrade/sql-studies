@@ -1,61 +1,54 @@
--- Spring Cleaning CRUD Challenge
-CREATE DATABASE shirts_db;
-USE shirts_db;
-CREATE TABLE shirts (shirt_id INT auto_increment, 
- article VARCHAR(255) NOT NULL, 
- color VARCHAR(255) NOT NULL, 
- shirt_size VARCHAR(255) NOT NULL, 
- last_worn INT NOT NULL, 
- PRIMARY KEY(shirt_id)
-);
-DESC shirts;
+-- CRUD Challenge
+  -- Create a new database
+  CREATE DATABASE shirts_db;
+  USE shirts_db;
 
---
-INSERT INTO shirts (article, color, shirt_size, last_worn) VALUES 
-  ('t-shirt', 'white', 'S', 10), 
+  -- Create a new "shirts" table
+  CREATE TABLE shirts (
+  shirt_id INT PRIMARY KEY AUTO_INCREMENT, 
+  article VARCHAR(100) NOT NULL, 
+  color VARCHAR(100) NOT NULL, 
+  shirt_size VARCHAR(100) NOT NULL, 
+  last_worn VARCHAR(100) NOT NULL
+  );
+
+  -- Insert some shirts into the table
+  INSERT INTO shirts (article, color, shirt_size, last_worn) VALUES
+  ('t-shirt', 'white', 'S', 10),
   ('t-shirt', 'green', 'S', 200),
-  ('polo shirt', 'black', 'M', 10), 
-  ('tank top', 'blue', 'S', 50), 
-  ('t-shirt', 'pink', 'S', 0), 
-  ('polo shirt', 'red', 'M', 5), 
-  ('tank top', 'white', 'S', 200), 
-  ('tank top', 'blue', 'M', 15)
-;
-SELECT * FROM shirts;
+  ('polo shirt', 'black', 'M', 10),
+  ('tank top', 'blue', 'S', 50),
+  ('t-shirt', 'pink', 'S', 0),
+  ('polo shirt', 'red', 'M', 5),
+  ('tank top', 'white', 'S', 200),
+  ('tank top', 'blue', 'M', 15);
 
---
-INSERT INTO shirts (article, color, shirt_size, last_worn) VALUES ('polo shirt', 'purple', 'M', 50);
-SELECT * FROM shirts WHERE color='purple';
+  -- Add a new shirt
+  INSERT INTO shirts (article, color, shirt_size, last_worn) VALUES ('Polo shirt', 'Purple', 'M', 50);
 
---
-SELECT article, color FROM shirts;
+  -- Select all shirts but print out only the article and color
+  SELECT article, color FROM shirts;
 
---
-SELECT article, color, shirt_size, last_worn FROM shirts WHERE shirt_size='M';
+  -- Select all medium shirts with every row but the shirt_id
+  SELECT article, color, shirt_size, last_worn FROM shirts;
 
---
-UPDATE shirts SET shirt_size='L' WHERE article='polo shirt';
-SELECT * FROM shirts WHERE article='polo shirt';
+  -- Update all polo shirts by changing their size to L
+  UPDATE shirts SET shirt_size = 'L' WHERE article = 'Polo shirt';
 
---
-UPDATE shirts SET last_worn=0 WHERE last_worn=15;
-SELECT * FROM shirts WHERE last_worn=0;
+  -- Set the shirt last worn 15d/ago to today
+  UPDATE shirts SET last_worn = 0 WHERE last_worn = 15;
 
---
-UPDATE shirts SET shirt_size='XS', color='off white' WHERE color='white';
-SELECT * FROM shirts WHERE color='off white';
+  -- Update all white shirts to XS and 'off white'
+  UPDATE shirts SET shirt_size = 'XS', color = 'off white' WHERE color = 'white';
 
---
-DELETE FROM shirts WHERE last_worn=200;
-SELECT * FROM shirts;
+  -- Delete all old shirts
+  DELETE from shirts WHERE last_worn = 200;
 
---
-DELETE FROM shirts WHERE article='tank top'
-SELECT * FROM shirts;
+  -- Delete all tank tops
+  DELETE from shirts WHERE article = 'tank top';
 
---
-DELETE FROM shirts;
+  -- Delete all shirts
+  DELETE from shirts;
 
---
-DROP TABLE shirts;
-DROP DATABASE shirts_db;
+  -- Drop the entire shirts table
+  DROP TABLE shirts;

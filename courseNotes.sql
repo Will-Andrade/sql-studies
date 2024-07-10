@@ -1,3 +1,15 @@
+-- PS's
+  -- WHERE can't utilize aliases created during SELECT clauses because WHERE gets processed before SELECTs. I need to replace WHERE with HAVING to make it work, like:
+  SELECT 
+    ID_NF, SUM(QUANTIDADE * VALOR_UNIT) AS VALOR_TOTAL
+  FROM invoices
+  GROUP BY ID_NF
+  HAVING VALOR_TOTAL > 500
+  ORDER BY VALOR_TOTAL DESC;
+
+-- To connect to a database
+$ mysql/mariadb -u root/username -p 
+
 -- To create, use and drop dabatases
 SHOW DATABASES;
 USE database_name;
